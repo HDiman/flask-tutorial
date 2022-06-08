@@ -4,4 +4,7 @@
 {% block content %}
 <p>Home page:</p>
 <h2>{{user}}</h2>
+{% if user == "please login" %}
+    <a href="login">Enter</a>
+{% endif %}
 {% endblock %}
