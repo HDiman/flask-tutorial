@@ -2,9 +2,9 @@
 {% block title %} Home page {% endblock %}
 
 {% block content %}
-<p>Home page:</p>
+<p>Home page for:</p>
 <h2>{{user}}</h2>
 {% if user == "please login" %}
-    <a href="login">Enter</a>
+    <p>Please login</p>
 {% endif %}
 {% endblock %}
