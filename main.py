@@ -39,15 +39,10 @@ def login():
         found_user = users.query.filter_by(name=user).first()
         if found_user:
             session["email"] = found_user.email
-
-
-
         else:
             usr = users(user, "")
             db.session.add(usr)
             db.commit()
-
-
 
         flash("Login Successful!")
         return redirect(url_for("user"))
@@ -74,8 +69,11 @@ def user():
         user = session["user"]
 
         if request.method == "POST":
-            email =  request.form["email"]
+            email = request.form["email"]
             session["email"] = email
+            found_user = users.query.filter_by(name=user).first()
+            found_user.email = email
+            db.commit()
             flash("Email was saved!")
         else:
             if "email" in session:
