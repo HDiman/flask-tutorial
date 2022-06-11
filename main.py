@@ -29,6 +29,12 @@ def home():
         user_name = "please login"
     return render_template("index.html", user=user_name)
 
+@app.route("/view")
+def view():
+    return render_template("view.html", values=users.query.all())
+
+
+
 @app.route("/login", methods=["POST", "GET"])
 def login():
     if request.method == "POST":
@@ -37,6 +43,7 @@ def login():
         session["user"] = user
 
         found_user = users.query.filter_by(name=user).first()
+        # found_user = users.query.filter.by(name=user).delete() # if needs to delete one item
         if found_user:
             session["email"] = found_user.email
         else:
